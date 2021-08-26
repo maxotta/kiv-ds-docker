@@ -9,8 +9,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Build the KIV/DS Docker image
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_SECRET }}
+
+    - name: Build & push the KIV/DS Docker image to the gitHub Container Registry
       run: |
-        echo $GHCR_SECRET | docker login ghcr.io -u maxotta --password-stdin
-      env:
-        GHCR_SECRET: ${{ secrets.GHCR_SECRET }}
+        docker build . --tag ghcr.io/jonashackt/hello-world:latest
+        docker run ghcr.io/jonashackt/hello-world:latest
+        docker push ghcr.io/jonashackt/hello-world:latest
