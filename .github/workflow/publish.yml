@@ -1,0 +1,16 @@
+name: publish
+
+on: [push]
+
+jobs:
+  publish-kiv-ds-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build the KIV/DS Docker image
+      run: |
+        echo $GHCR_SECRET | docker login ghcr.io -u maxotta --password-stdin
+      env:
+        GHCR_SECRET: ${{ secrets.GHCR_SECRET }}
