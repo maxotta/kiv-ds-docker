@@ -17,5 +17,7 @@ ADD https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub 
 RUN chmod 600 /home/vagrant/.ssh/authorized_keys
 RUN chown -R vagrant:vagrant /home/vagrant/.ssh
 
+LABEL org.opencontainers.image.source="https://github.com/maxotta/kiv-ds-docker"
+
 ENTRYPOINT ["/usr/sbin/sshd", "-D"]
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
