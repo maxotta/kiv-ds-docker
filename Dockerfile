@@ -6,6 +6,7 @@ RUN yum -y update ;\
     yum clean all ;\
     yum -y install \
         net-tools \
+        less \
         mc
 
 RUN yum -y install \
@@ -28,13 +29,7 @@ ADD https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub 
 RUN chmod 600 /home/vagrant/.ssh/authorized_keys ;\
     chown -R vagrant:vagrant /home/vagrant/.ssh
 
-RUN yum -y install \
-        epel-release \
-        avahi \
-        avahi-tools \
-        nss-mdns
-
 COPY kiv-ds-startup.sh /etc
 RUN chmod a+x /etc/kiv-ds-startup.sh
 
-ENTRYPOINT ["/etc/kiv-ds-startup.sh", "10.0.1.0"]
+ENTRYPOINT ["/etc/kiv-ds-startup.sh"]
