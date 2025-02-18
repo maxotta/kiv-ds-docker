@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM almalinux:9.5
 LABEL maintainer="maxmilio@kiv.zcu.cz" \
       org.opencontainers.image.source="https://github.com/maxotta/kiv-ds-docker"
 
